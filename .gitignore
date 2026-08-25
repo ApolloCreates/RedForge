@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Test/cache
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+*.egg-info/
