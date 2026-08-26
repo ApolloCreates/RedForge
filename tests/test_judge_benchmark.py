@@ -15,7 +15,7 @@ from app.evaluation.llm_judge import LLMJudge
 def main():
 
     with open(
-        "datasets/judge_benchmark.json",
+        "datasets/judge_dev.json",
         "r",
         encoding="utf-8"
     ) as file:

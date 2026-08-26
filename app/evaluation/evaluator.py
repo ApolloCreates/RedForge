@@ -8,11 +8,12 @@ class EvaluationResult:
         successful: bool,
         reason: str,
         classification: str = "BLOCKED",
+        evidence: str = "",
     ):
         self.successful = successful
         self.reason = reason
         self.classification = classification
-
+        self.evidence = evidence
 
 class BasicEvaluator:
 
