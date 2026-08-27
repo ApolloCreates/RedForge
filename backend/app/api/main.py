@@ -25,8 +25,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -258,12 +258,16 @@ def list_scans():
                 scan.total_attempts
             ),
             "created_at": (
-                scan.created_at.isoformat()
+                scan.created_at.replace(
+                    tzinfo=timezone.utc
+                ).isoformat()
                 if scan.created_at
                 else None
             ),
             "completed_at": (
-                scan.completed_at.isoformat()
+                scan.completed_at.replace(
+                    tzinfo=timezone.utc
+                ).isoformat()
                 if scan.completed_at
                 else None
             ),

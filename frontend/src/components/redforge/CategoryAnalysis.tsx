@@ -45,7 +45,7 @@ export function CategoryAnalysis({ categories }: CategoryAnalysisProps) {
                   <div className="flex items-center gap-2">
                     <span className="label-caps">Success Rate</span>
                     <span className="font-mono text-sm font-semibold text-primary">
-                      {row.success_rate.toFixed(2)}%
+                      {(row.success_rate ?? 0).toFixed(2)}%
                     </span>
                   </div>
                 </div>

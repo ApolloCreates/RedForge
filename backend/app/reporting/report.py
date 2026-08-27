@@ -1,8 +1,8 @@
 from collections import defaultdict
 from datetime import datetime, timezone
-from app.reporting.finding_generator import FindingGenerator
 
 from app.reporting.finding_generator import FindingGenerator
+
 
 class SecurityReport:
 
@@ -75,8 +75,18 @@ class SecurityReport:
             if finding is not None:
                 findings.append(finding)
 
+        # Calculate success rate for each category.
+        for category, stats in categories.items():
+
+            stats["success_rate"] = (
+                stats["successful"] / stats["attempts"] * 100
+                if stats["attempts"]
+                else 0
+            )
+
+        # Calculate overall success rate.
         success_rate = (
-            successful / total
+            successful / total * 100
             if total
             else 0
         )

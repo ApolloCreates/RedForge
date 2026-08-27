@@ -9,7 +9,7 @@ import { RecentScans } from "./RecentScans";
 import { AboutRedForge } from "./AboutRedForge";
 import { getHealth, getScan, getScans, startScan } from "@/lib/redforge/api";
 import { POLL_INTERVAL_MS } from "@/lib/redforge/config";
-import { MOCK_HISTORY, MOCK_REPORT } from "@/lib/redforge/mock";
+import { MOCK_REPORT } from "@/lib/redforge/mock";
 import { CATEGORY_ORDER } from "@/lib/redforge/format";
 import type {
   AttackCategoryId,
@@ -30,8 +30,8 @@ export function RedForgeDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [elapsed, setElapsed] = useState(0);
 
-  const [history, setHistory] = useState<ScanHistoryItem[]>(MOCK_HISTORY);
-  const [historyIsMock, setHistoryIsMock] = useState(true);
+  const [history, setHistory] = useState<ScanHistoryItem[]>([]);
+  const [historyIsMock, setHistoryIsMock] = useState(false);
   const [loadingScanId, setLoadingScanId] = useState<string | null>(null);
   const [activeScanId, setActiveScanId] = useState<string | null>(null);
   const [backendHealthy, setBackendHealthy] = useState<boolean | null>(null);
@@ -51,7 +51,8 @@ export function RedForgeDashboard() {
       setHistory(data.scans);
       setHistoryIsMock(false);
     } catch {
-      /* backend unavailable: keep whatever history is on screen */
+      setHistory([]);
+      setHistoryIsMock(false);
     }
   }, []);
 

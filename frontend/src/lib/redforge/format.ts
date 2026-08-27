@@ -15,12 +15,28 @@ export function formatElapsed(seconds: number): string {
   return [h, m, s].map((n) => String(n).padStart(2, "0")).join(":");
 }
 
-export function formatScanDate(iso: string): { date: string; time: string } {
+export function formatScanDate(
+  iso: string,
+): { date: string; time: string } {
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return { date: iso, time: "" };
+
+  if (Number.isNaN(d.getTime())) {
+    return { date: iso, time: "" };
+  }
+
   return {
-    date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
-    time: d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
+    date: d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "Asia/Kolkata",
+    }),
+
+    time: d.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Kolkata",
+    }),
   };
 }
 
