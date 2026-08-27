@@ -16,11 +16,15 @@ from sqlalchemy.orm import Session
 from app.database.database import SessionLocal
 from app.database.models import Scan
 
+from app.database.init_db import init_db
+
 app = FastAPI(
     title="RedForge API",
     description="Automated LLM Security Testing API",
     version="0.1.0",
 )
+
+init_db()
 
 app.add_middleware(
     CORSMiddleware,
