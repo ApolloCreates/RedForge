@@ -25,3 +25,10 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+
+# Generated reports
+reports/*.json
+backend/reports/*.json
+
+# Local database
+*.db
